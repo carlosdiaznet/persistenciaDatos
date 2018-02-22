@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<h:outputStylesheet name="./resources/style.css" />
+	<link href="resources/style.css" rel="stylesheet" type="text/css" />
+	<title>Persistencia de datos con JPA</title>
+	<!-- <link href="resources/css/bootstrap.min.css" rel="stylesheet" />-->
+</h:head>
+<h:body>
+<div class="ui-g">
+<div class="ui-g-1"></div>
+<div class="ui-g-10">
+	<div id="top">
+		<ui:insert name="top">
+			<h:form>
+				<p:menubar>
+					<p:menuitem url="productos.xhtml" value="Productos" />
+					<p:menuitem url="alumnos.xhtml" value="Alumnos" />
+					<p:menuitem url="cursos.xhtml" value="Cursos" />
+				</p:menubar>
+			</h:form>
+		</ui:insert>
+	</div>
+	
+
+	<div id="content">
+		<ui:insert name="content"></ui:insert>
+	</div>
+	<div id="bottom">
+		<ui:insert name="bottom">Bottom</ui:insert>
+	</div>
+	</div>
+	
+<div class="ui-g-1"></div>	
+</div>
+	<!-- <script src="resources/js/bootstrap.min.js"></script>-->
+</h:body>
+</html>

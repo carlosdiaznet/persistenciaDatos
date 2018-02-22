@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="content">
+		<f:event listener="#{alumnoMB.listar()}" type="preRenderView" />
+		
+			<h:form>
+				<p:growl showDetail="true" id="mensaje_grwl" life="3000" />
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Alumno" />
+				<p:selectOneMenu value="#{cursoMB.curso.alumno}" converter="omnifaces.SelectItemsConverter">
+					<f:selectItem noSelectionOption="true" itemLabel="Seleccione..." itemValue="#{null}" />
+					<f:selectItems value="#{alumnoMB.lstAlumnos}" var="alm" itemLabel="#{alm.nombre}" itemValue="#{alm}" />
+				</p:selectOneMenu>
+					<p:outputLabel value="Titulo" />
+					<p:inputText value="#{cursoMB.curso.titulo}" />
+					<p:outputLabel value="Duracion" />
+					<p:inputText value="#{cursoMB.curso.duracion}" />
+					<p:outputLabel value="Precio" />
+					<p:inputText value="#{cursoMB.curso.precio}" />
+					<p:commandButton value="Registrar Curso" actionListener="#{cursoMB.registrar()}" update="mensaje_grwl" />
+					<p:commandButton value="Listar Cursos" oncomplete="PF('wdlgCursos').show();" />
+				</p:panelGrid>
+				<p:dataTable id="data" var="curso" value="#{cursoMB.lstCursos}">
+					
+					<p:column headerText="Titulo del curso">
+						<p:outputLabel value="#{curso.titulo}" />
+					</p:column>
+					<p:column headerText="Duracion del curso">
+						<p:outputLabel value="#{curso.duracion}" />
+					</p:column>
+					<p:column headerText="precio del curso">
+						<p:outputLabel value="#{curso.precio}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<ui:include src="/cursosaddedit.xhtml" />
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

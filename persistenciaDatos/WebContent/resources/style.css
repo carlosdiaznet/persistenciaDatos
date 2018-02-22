@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+.ui-widget {
+	font-size: 14px;
+}
+body {
+	font-family: Helvetica, Calibri, Arial;
+	font-size: 14px;
+	color: #555;
+}
+.ui-growl-message {
+	font-size: 12px;
+}
+/*controla el growl mensaje de respuesta */
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+	background-color: #549ebd;
+}
+
+.ui-confirm-dialog {
+	padding-left: 10px;
+}

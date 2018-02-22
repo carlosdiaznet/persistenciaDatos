@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+		<p:dialog appendTo="@(body)" header="Cursos existentes" widgetVar="wdlgCursos" id="dlgCursos">
+		<f:event listener="#{cursoMB.listar()}" type="preRenderView" />
+				<h:form>
+				<p:commandButton value="Listar Cursos" actionListener="#{cursoMB.listar()}" update="data2" />
+					<p:dataTable id="data2" var="curso" value="#{cursoMB.lstCursos}">
+					<p:column headerText="Titulo del curso">
+						<p:outputLabel value="#{curso.titulo}" />
+					</p:column>
+					<p:column headerText="Duración del curso">
+						<p:outputLabel value="#{curso.duracion}" />
+					</p:column>
+					<p:column headerText="Precio del curso">
+						<p:outputLabel value="#{curso.precio}" />
+					</p:column>
+				</p:dataTable>
+				</h:form>
+		</p:dialog>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        			<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        			<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    		</p:confirmDialog>
+</h:body>
+</html>

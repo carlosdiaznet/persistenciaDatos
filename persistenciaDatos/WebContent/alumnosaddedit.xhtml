@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:body>
+		<p:dialog appendTo="@(body)" header="Actualizar Datos de alumno" widgetVar="wdlgAlumnos" id="dlgAlumnos">
+				<h:form>
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Nombre:" />
+						<p:inputText value="#{alumnoMB.alumno.nombre}" />
+						<p:outputLabel value="Apellidos:" />
+						<p:inputText value="#{alumnoMB.alumno.apellidos}" />
+						<p:outputLabel value="Edad: " />
+						<p:inputText value="#{alumnoMB.alumno.edad}" />
+						<p:commandButton value="Actualizar" actionListener="#{alumnoMB.modificar()}" oncomplete="PF('wdlgAlumnos').hide();" update=":frmAlumno:data" />
+						<p:commandButton value="Cancelar" immediate="true" oncomplete="PF('wdlgAlumnos').hide();" />
+					</p:panelGrid>
+				</h:form>
+			</p:dialog>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        			<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        			<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    		</p:confirmDialog>
+</h:body>
+</html>

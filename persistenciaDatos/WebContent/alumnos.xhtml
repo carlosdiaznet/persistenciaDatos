@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="content">
+		<f:event listener="#{alumnoMB.listar()}" type="preRenderView" />
+			<h:form id="frmAlumno">
+				<p:growl showDetail="true" id="mensaje_grwl" globalOnly="true" life="3000" />
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nombre:" />
+					<p:inputText value="#{alumnoMB.alumno.nombre}" />
+					<p:outputLabel value="Apellidos: " />
+					<p:inputText value="#{alumnoMB.alumno.apellidos}" />
+					<p:outputLabel value="Edad: " />
+					<p:inputText value="#{alumnoMB.alumno.edad}" />
+					<p:commandButton value="Registrar" actionListener="#{alumnoMB.registrar()}" update="mensaje_grwl" />
+					<p:commandButton value="Listar" actionListener="#{alumnoMB.listar()}" update="data" />
+				</p:panelGrid>
+				<p:dataTable id="data" var="alumno" value="#{alumnoMB.lstAlumnos}" rows="10" paginator="true" rowsPerPageTemplate="5,10,15" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column headerText="Nombre">
+						<p:outputLabel value="#{alumno.nombre}" />
+					</p:column>
+					<p:column headerText="Apellidos">
+						<p:outputLabel value="#{alumno.apellidos}" />
+					</p:column>
+					<p:column headerText="Edad">
+						<p:outputLabel value="#{alumno.edad}" />
+					</p:column>
+					<p:column headerText="Modificar">
+						<p:commandLink value="Modificar" actionListener="#{alumnoMB.alumnoID(alumno)}" oncomplete="PF('wdlgAlumnos').show();" update=":dlgAlumnos" />
+					</p:column>
+					<p:column headerText="Eliminar">
+						<p:commandLink value="Eliminar" actionListener="#{alumnoMB.eliminar(alumno)}" update="data">
+							<p:confirm header="Eliminar" message="¿Seguro de eliminar el registro?" icon="ui-icon-alert" />
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+				
+			</h:form>
+			<ui:include src="/alumnosaddedit.xhtml" />
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
